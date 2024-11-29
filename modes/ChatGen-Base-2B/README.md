@@ -1,29 +1,34 @@
-<h1 align="center">
-ChatGen: Automatic Text-to-Image Generation From FreeStyle Chatting
-</h1>
-<p align="center">
-  <a href="https://chengyou-jia.github.io/ChatGen-Home/"><b>[🌐 Website]</b></a> •
-  <a href="https://arxiv.org/abs/2411.17176"><b>[📜 Paper]</b></a> •
-  <a href="https://huggingface.co/collections/ChengyouJia/chatgen-6744724ae834402b5b69037b"><b>[🤗 HF Models]</b></a> •  
-  <a href="https://huggingface.co/datasets/ChengyouJia/ChatGenBench"><b>[🤗 HF Dataset]</b></a> •  
-</p>
+---
+license: apache-2.0
+base_model:
+- OpenGVLab/InternVL2-2B
+pipeline_tag: image-text-to-text
+library_name: transformers
+---
+
+# ChatGen: Automatic Text-to-Image Generation From FreeStyle Chatting
+
+<div align="center">
+
+[\[🏠Homepage\]](https://chengyou-jia.github.io/ChatGen-Home/) [\[💻Code\]](https://github.com/chengyou-jia/ChatGen) [\[🚀Quick Start\]](#quick-start) [\[📝Paper\]](https://arxiv.org/abs/2411.17176) [\[🤗Models\]](https://huggingface.co/ChengyouJia/ChatGen-Base-2B)[\[🤗Data\]](https://huggingface.co/datasets/ChengyouJia/ChatGenBench)
+
+</div>
+
+## Overview
+![ChatGen](./case_step.png)
+
+ChatGen aims to automate tedious steps in text-to-image, allowing users to simply describe their needs in a freestyle chatting way.
 
 
-<p align="center">
-Repo for "<a href="https://arxiv.org/abs/2411.17176" target="_blank">ChatGen: Automatic Text-to-Image Generation From FreeStyle Chatting</a>"
-</p>
 
+## ChatGen-Base-2B 
 
-## ChatGen
-![ChatGen](./examples/case_step.png)
-
-![ChatGen](./examples/case_dall1.png)
-
-
+`ChatGen-Base-2B` is a MLLM finetuned from InternVL-2B. By taking as input a system prompt, and freestyle user query, 
+the model generates suitable prompts, appropriate models, and specific arguments.
 
 
 ### Installation
-First install the necessary dependencies:
+To use `ChatGen-Base-2B`, first install the necessary dependencies:
 ```bash
 pip install transformers
 ```
@@ -113,7 +118,7 @@ def load_image(image_file, input_size=448, max_num=12):
     return pixel_values
 
 # If you want to load a model using multiple GPUs, please refer to the `Multiple GPUs` section.
-path = 'ChengyouJia/ChatGen-Base-8B'
+path = 'ChengyouJia/ChatGen-Base-2B'
 model = AutoModel.from_pretrained(
     path,
     torch_dtype=torch.bfloat16,
@@ -143,13 +148,11 @@ input = sys_singlemodal + question
 response, history = model.chat(tokenizer, None, input, generation_config, history=None, return_history=True)
 print(f'User: {question}\nAssistant: {response}')
 ```
-
-
-
+```
 
 ## Citation
-If you find it helpful, please kindly cite the paper.
-```
+If you find this repository helpful, feel free to cite our paper:
+```bibtex
 @article{jia2024chatgen, 
   title={ChatGen: Automatic Text-to-Image Generation From FreeStyle Chatting}, 
   author={Jia, Chengyou and Xia, Changliang and Dang, Zhuohang and Wu, Weijia and Qian, Hangwei and Luo, Minnan}, 
@@ -157,7 +160,3 @@ If you find it helpful, please kindly cite the paper.
   year={2024}
 }
 ```
-
-## 📬 Contact
-
-If you have any inquiries, suggestions, or wish to contact us for any reason, we warmly invite you to email us at cp3jia@stu.xjtu.edu.cn.
