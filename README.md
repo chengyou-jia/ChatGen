@@ -19,7 +19,9 @@ Repo for "<a href="https://arxiv.org/abs/2411.17176" target="_blank">ChatGen: Au
 
 ![ChatGen](./examples/case_dall1.png)
 
+##  News
 
+- _2024.12_:  We release the details of <a href="https://huggingface.co/datasets/ChengyouJia/ChatGenBench"><b>[ChatGenBench]</b></a> with multi-models info in ```6807_models_Info.csv```.
 
 
 ### Installation
